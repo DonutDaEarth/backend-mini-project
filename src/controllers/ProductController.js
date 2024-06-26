@@ -70,7 +70,8 @@ exports.readMulti = async (req, res) => {
     } else {
         try {
             const results = await Promise.all(ids.map(async (id) => {
-                const result = await model.read(id);
+                const { readId } = id;
+                const result = await model.read(readId);
                 if (!result) {
                     throw new Error(`Product with ID ${id} not found`);
                 }
